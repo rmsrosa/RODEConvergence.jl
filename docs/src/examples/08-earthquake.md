@@ -72,7 +72,6 @@ More specifically, for the numerical simulations, we use $\zeta_0 = 0.6$ and $\o
 First we load the necessary packages:
 
 ````@example 08-earthquake
-using JLD2
 using Plots
 using Measures
 using Random
@@ -357,12 +356,6 @@ The calculated order of convergence is given by field `p`:
 
 ````@example 08-earthquake
 println("Order of convergence `C Δtᵖ` with p = $(round(result.p, sigdigits=2)) and 95% confidence interval ($(round(result.pmin, sigdigits=3)), $(round(result.pmax, sigdigits=3)))")
-nothing # hide
-````
-
-````@example 08-earthquake
-# save to docs/build/
-save(joinpath(@__DIR__(),"results/08-earthquake_result.jld2"), Dict("result" => result)) # hide
 nothing # hide
 ````
 

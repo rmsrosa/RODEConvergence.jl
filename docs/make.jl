@@ -36,7 +36,6 @@ include(joinpath(@__DIR__(), "literate.jl"))
             "examples/08-earthquake.md",
             "examples/09-risk.md",
             "examples/10-fisherkpp.md",
-            "examples/11-combined_convergences.md"
         ],
         "Noises" => [
             "noises/noiseintro.md",

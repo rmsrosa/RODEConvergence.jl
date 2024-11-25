@@ -77,7 +77,6 @@
 # 
 # First we load the necessary packages:
 
-using JLD2
 using Plots
 using Measures
 using Random
