@@ -15,7 +15,7 @@ More precisely, we consider the RODE
   \left. {X}_t \right|_{t = 0} = {X}_0,
   \end{cases}
 ```
-where $\{{Y}_t\}_{t\geq 0}$ is either a scalar noise with one of the many implemented noises or a vector-valued noise with all the noises, each as an independent component of the vector process.
+where $\{Y_t\}_{t\geq 0}$ is either a scalar noise with one of the many implemented noises or a vector-valued noise with all the noises, each as an independent component of the vector process.
 
 Again, the *target* solution is construced by solving the system via Euler method at a much higher resolution.
 
@@ -149,7 +149,7 @@ We now add some information about the simulation, for the caption of the converg
 ````@example 04-allnoises
 info = (
     equation = "\$\\mathrm{d}{X}_t/\\mathrm{d}t = - \\| {Y}_t\\|^2 {X}_t + {Y}_t\$",
-    noise = "vector-valued noise \$\\{{Y}_t\\}_t\$ with all the implemented noises",
+    noise = "vector-valued noise \$\\{Y_t\\}_t\$ with all the implemented noises",
     ic = "\${X}_0 \\sim \\mathcal{N}({0}, \\mathrm{I})\$"
 )
 nothing # hide
