@@ -230,11 +230,6 @@ We draw a plot of the rate of convergence with the help of a plot recipe for [`C
 plt = plot(result)
 ````
 
-````@example 02-wiener_linearnonhomogeneous
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/order_wiener_linearnonhomogenous.pdf")) # hide
-nothing # hide
-````
-
 For the sake of illustration, we plot an approximation of a sample target solution:
 
 ````@example 02-wiener_linearnonhomogeneous

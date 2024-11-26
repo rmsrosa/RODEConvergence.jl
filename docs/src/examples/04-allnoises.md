@@ -201,11 +201,6 @@ We illustrate the rate of convergence with the help of a plot recipe for `Conver
 plt_result = plot(result)
 ````
 
-````@example 04-allnoises
-savefig(plt_result, joinpath(@__DIR__() * "../../../../latex/img/", "order_allnoises.pdf")) # hide
-nothing # hide
-````
-
 For the sake of illustration, we plot a sample of the norms of a sequence of approximations of a target solution, along with the norm of the target:
 
 ````@example 04-allnoises
@@ -220,11 +215,6 @@ We can also visualize the noises associated with this sample solution, both indi
 plt_noises = plot(suite, xshow=false, yshow=true, linecolor=:auto, label=["W" "OU" "gBm" "hlp" "cP" "sP" "H" "T" "fBm"], legend=:topright)
 ````
 
-````@example 04-allnoises
-savefig(plt_noises, joinpath(@__DIR__() * "../../../../latex/img/", "noisepath_allnoises.pdf")) # hide
-nothing # hide
-````
-
 and combined, with their sum squared, as it enters the homogenous term,
 
 ````@example 04-allnoises
@@ -237,11 +227,6 @@ We finally combine all the convergence plot and the noises into a single plot, f
 plt_noises = plot(suite, xshow=false, yshow=true, linecolor=:auto, legend=nothing)
 
 plt_combined = plot(plt_result, plt_noises, legendfont=6, size=(800, 240), title=["(a) non-homogeneous linear system" "(b) sample paths of all noises"], titlefont=10, bottom_margin=5mm, left_margin=5mm)
-````
-
-````@example 04-allnoises
-savefig(plt_combined, joinpath(@__DIR__() * "../../../../latex/img/", "allnoises_combined.pdf")) # hide
-nothing # hide
 ````
 
 ### Scalar equations with the individual noises
@@ -309,20 +294,10 @@ hline!(plt_eachnoise, [1.0], linestyle=:dash, label="theory",bottom_margin=5mm, 
 
 Strong order $p$ of convergence of the Euler method for $\mathrm{d}X_t/\mathrm{d}t = - Y_t^2 X_t + Y_t$ for a series of different noise $\{Y_t\}_t$ (scattered dots: computed values; dashed line: expected $p = 1;$ with 95% confidence interval).
 
-````@example 04-allnoises
-savefig(plt_eachnoise, joinpath(@__DIR__() * "../../../../latex/img/", "order_dep_on_noise_allnoises.pdf")) # hide
-nothing # hide
-````
-
 Combined with the noise sample paths:
 
 ````@example 04-allnoises
 plt_combined = plot(plt_eachnoise, plt_noises, legendfont=6, size=(800, 240), title=["(a) non-homogeneous linear system" "(b) sample paths of all noises"], titlefont=10, bottom_margin=5mm, left_margin=5mm)
-````
-
-````@example 04-allnoises
-savefig(plt_combined, joinpath(@__DIR__() * "../../../../latex/img/", "allnoises_combined.pdf")) # hide
-nothing # hide
 ````
 
 ---

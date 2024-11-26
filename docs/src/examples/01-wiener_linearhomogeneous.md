@@ -268,20 +268,10 @@ We create a plot with the rate of convergence with the help of a plot recipe for
 plt = plot(result)
 ````
 
-````@example 01-wiener_linearhomogeneous
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/order_wiener_linearhomogenous.pdf")) # hide
-nothing # hide
-````
-
 For the sake of illustration, we plot the approximations of a sample target solution:
 
 ````@example 01-wiener_linearhomogeneous
 plt = plot(suite, ns=nsample)
-````
-
-````@example 01-wiener_linearhomogeneous
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/approximation_linearhomogenous.pdf")) # hide
-nothing # hide
 ````
 
 Finally, we also visualize the noise associated with this sample solution:

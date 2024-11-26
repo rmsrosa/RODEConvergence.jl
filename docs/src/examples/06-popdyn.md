@@ -180,20 +180,10 @@ We illustrate the rate of convergence with the help of a plot recipe for `Conver
 plt = plot(result)
 ````
 
-````@example 06-popdyn
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/", "order_popdyn_gBmPoisson.pdf")) # hide
-nothing # hide
-````
-
 For the sake of illustration, we plot some approximations of a sample target solution:
 
 ````@example 06-popdyn
 plt = plot(suite, ns=nsample)
-````
-
-````@example 06-popdyn
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/", "sample_popdyn_gBmPoisson.pdf")) # hide
-nothing # hide
 ````
 
 We can also visualize the noises associated with this sample solution:

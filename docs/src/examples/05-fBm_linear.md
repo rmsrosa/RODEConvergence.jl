@@ -193,11 +193,6 @@ plot!(plt, 0.0:0.5:1.0, p -> p, linestyle=:dot, label="previous")
 
 Strong order $p$ of convergence of the Euler method for $\mathrm{d}X_t/\mathrm{d}t = - Y_t^H X_t$ with a fBm process $\{Y_t^H\}_t$ for various values of the Hurst parameter $H$ (scattered dots: computed values; dashed line: expected $p = H + 1/2;$ dash-dot line: previous theory $p = H.$).
 
-````@example 05-fBm_linear
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/", "order_dep_on_H_fBm.pdf")) # hide
-nothing # hide
-````
-
 ---
 
 *This page was generated using [Literate.jl](https://github.com/fredrikekre/Literate.jl).*

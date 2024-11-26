@@ -338,20 +338,10 @@ We create a plot with the rate of convergence with the help of a plot recipe for
 plt_result = plot(result)
 ````
 
-````@example 10-fisherkpp
-savefig(plt_result, joinpath(@__DIR__() * "../../../../latex/img/",  "order_fisherkpp.pdf")) # hide
-nothing # hide
-````
-
 We also combine some plots into a single figure, for the article:
 
 ````@example 10-fisherkpp
 plt_combined = plot(plt_result, plt_OUandHawkes, plt_noise, layout=@layout([ a [ b; c ] ]), size=(800, 280), title=["(a) Fisher-KPP model" "(b) noise parts" "(c) noise sample path"], legendfont=7, titlefont=10, bottom_margin=5mm, left_margin=5mm)
-````
-
-````@example 10-fisherkpp
-savefig(plt_combined, joinpath(@__DIR__() * "../../../../latex/img/", "fisherkpp_combined.pdf")) # hide
-nothing # hide
 ````
 
 For the sake of illustration, we plot the evolution of a sample target solution:

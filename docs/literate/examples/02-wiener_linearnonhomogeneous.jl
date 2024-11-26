@@ -203,11 +203,6 @@ nothing # hide
 
 plt = plot(result)
 
-#
-
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/order_wiener_linearnonhomogenous.pdf")) # hide
-nothing # hide
-
 # For the sake of illustration, we plot an approximation of a sample target solution:
 
 plot(suite, ns=nsample)

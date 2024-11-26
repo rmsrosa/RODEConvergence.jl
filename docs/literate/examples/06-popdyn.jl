@@ -148,19 +148,9 @@ nothing # hide
 
 plt = plot(result)
 
-#
-
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/", "order_popdyn_gBmPoisson.pdf")) # hide
-nothing # hide
-
 # For the sake of illustration, we plot some approximations of a sample target solution:
 
 plt = plot(suite, ns=nsample)
-
-#
-
-savefig(plt, joinpath(@__DIR__() * "../../../../latex/img/", "sample_popdyn_gBmPoisson.pdf")) # hide
-nothing # hide
 
 # We can also visualize the noises associated with this sample solution:
 

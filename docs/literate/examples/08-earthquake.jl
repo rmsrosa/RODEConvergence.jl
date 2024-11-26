@@ -257,11 +257,6 @@ plt2 = plot(tt, dmt, xlabel="\$t\$", ylabel="\$\\dot{M}_t\$", label=nothing)
 plt3 = plot(tt, yt, xlabel="\$t\$", ylabel="\$\\ddot{M}_t\$", label=nothing)
 plt_ground = plot(plt1, plt2, plt3, layout = (3, 1))
 
-#
-
-savefig(plt_ground, joinpath(@__DIR__() * "../../../../latex/img/", "noise_earthquake.pdf")) # hide
-nothing # hide
-
 # Now we are ready to check the order of convergence. We set the target resolution, the convergence test resolutions, the sample convergence resolutions, and the number of sample trajectories for the Monte-Carlo approximation of the strong error.
 
 ntgt = 2^18
@@ -316,11 +311,6 @@ nothing # hide
 
 plt_result = plot(result)
 
-#
-
-savefig(plt_result, joinpath(@__DIR__() * "../../../../latex/img/", "order_earthquake.pdf")) # hide
-nothing # hide
-
 # For the sake of illustration, we plot a sample of an approximation of a target solution, in each case:
 
 nsample = ns[[1, 2, 3]]
@@ -329,10 +319,6 @@ plt_sample = plot(suite, ns=nsample)
 # We also combine some plots into a single figure, to summarize the results.
 
 plt_combined = plot(plt_result, plt_sample, plt1, plt2, plt3, layout=@layout([[a; b] [c; d; e]]), size=(800, 480), title=["(a) seismic model" "(b) sample path" "(c) sample ground motion" "(d) sample ground velocity" "(e) sample ground acceleration"], legendfont=7, titlefont=10, bottom_margin=5mm, left_margin=5mm)
-#
-
-savefig(plt_combined, joinpath(@__DIR__() * "../../../../latex/img/", "earthquake_combined.pdf")) # hide
-nothing # hide
 
 # We finally draw an animation of the motion of the single-storey building driven by the transport-modulated noise.
 

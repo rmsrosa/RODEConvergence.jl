@@ -184,11 +184,6 @@ We plot the rate of convergence with the help of a plot recipe for `ConvergenceR
 plt_result = plot(result)
 ````
 
-````@example 07-toggle_switch
-savefig(plt_result, joinpath(@__DIR__() * "../../../../latex/img/", "order_toggleswitch.pdf")) # hide
-nothing # hide
-````
-
 For the sake of illustration of the behavior of the system, we rebuild the problem with a longer time step and do a single run with it, for a single sample solution.
 
 ````@example 07-toggle_switch
@@ -207,31 +202,16 @@ plt_sols = plot(suite, xshow=1, ns=nothing, label="\$X_t\$", linecolor=1)
 plot!(plt_sols, suite, xshow=2, ns=nothing, label="\$Y_t\$", linecolor=2, ylabel="\$\\textrm{concentration}\$")
 ````
 
-````@example 07-toggle_switch
-savefig(plt_sols, joinpath(@__DIR__() * "../../../../latex/img/", "evolution_toggleswitch.pdf")) # hide
-nothing # hide
-````
-
 We also illustrate the convergence to say the expression of the X gene:
 
 ````@example 07-toggle_switch
 plt_suite = plot(suite, legend=:top)
 ````
 
-````@example 07-toggle_switch
-savefig(plt_suite, joinpath(@__DIR__() * "../../../../latex/img/", "approximation_toggleswitch.pdf")) # hide
-nothing # hide
-````
-
 We can also visualize the noises associated with this sample solution:
 
 ````@example 07-toggle_switch
 plt_noises = plot(suite, xshow=false, yshow=true, label=["\$A_t\$" "\$B_t\$"], linecolor=[1 2], linestyle=:auto)
-````
-
-````@example 07-toggle_switch
-savefig(plt_noises, joinpath(@__DIR__() * "../../../../latex/img/", "noises_toggleswitch.pdf")) # hide
-nothing # hide
 ````
 
 We finally combine all plots into a single one, for a visual summary.
@@ -244,11 +224,6 @@ We also combine just some of them, for the article
 
 ````@example 07-toggle_switch
 plt_combined = plot(plt_result, plt_suite, size=(800, 240), title=["(a) toggle-switch model" "(b) Euler approximations"], titlefont=10, layout = (1, 2), legendfont=7, bottom_margin=5mm, left_margin=5mm)
-````
-
-````@example 07-toggle_switch
-savefig(plt_combined, joinpath(@__DIR__() * "../../../../latex/img/", "toggleswitch_combined.pdf")) # hide
-nothing # hide
 ````
 
 ---

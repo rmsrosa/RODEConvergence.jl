@@ -82,7 +82,6 @@ with $\{R_t\}_t$ as above.
 First we load the necessary packages:
 
 ````@example 09-risk
-using JLD2
 using Plots
 using Measures
 using Random
@@ -227,20 +226,10 @@ We plot the rate of convergence with the help of a plot recipe for `ConvergenceR
 plt_result = plot(result)
 ````
 
-````@example 09-risk
-savefig(plt_result, joinpath(@__DIR__() * "../../../../latex/img/", "order_riskmodel.pdf")) # hide
-nothing # hide
-````
-
 For the sake of illustration of the behavior of the system, we visualize a sample solution
 
 ````@example 09-risk
 plt_sols = plot(suite, ns=nothing, label="\$X_t\$", linecolor=1)
-````
-
-````@example 09-risk
-savefig(plt_sols, joinpath(@__DIR__() * "../../../../latex/img/", "evolution_riskmodel.pdf")) # hide
-nothing # hide
 ````
 
 We also illustrate the convergence to a sample solution
@@ -249,31 +238,16 @@ We also illustrate the convergence to a sample solution
 plt_suite = plot(suite)
 ````
 
-````@example 09-risk
-savefig(plt_suite, joinpath(@__DIR__() * "../../../../latex/img/", "approximation_riskmodel.pdf")) # hide
-nothing # hide
-````
-
 We can also visualize the noises associated with this sample solution:
 
 ````@example 09-risk
 plt_noises = plot(suite, xshow=false, yshow=true, label=["\$O_t\$" "\$R_t\$" "\$C_t\$"], linecolor=[1 2 3])
 ````
 
-````@example 09-risk
-savefig(plt_noises, joinpath(@__DIR__() * "../../../../latex/img/", "riskmodel_noises.pdf")) # hide
-nothing # hide
-````
-
 The actual surplus is $U_t = X_t - O_t - C_t$, so we may visualize a sample solution of the surplus by subtracting these two noises from the solution of the above RODE.
 
 ````@example 09-risk
 plt_surplus = plot(range(t0, tf, length=ntgt+1), suite.xt .- suite.yt[:, 1] .- suite.yt[:, 3], xaxis="\$t\$", yaxis="\$u\$", label="\$U_t\$", linecolor=1)
-````
-
-````@example 09-risk
-savefig(plt_surplus, joinpath(@__DIR__() * "../../../../latex/img/", "riskmodel_surplus.pdf")) # hide
-nothing # hide
 ````
 
 Combining the plots
@@ -292,11 +266,6 @@ plot!(plt_surplus_and_noises_twin, tt, suite.yt[begin:ds:end, 2], label="\$R_t\$
 plot!(plt_surplus_and_noises_twin, tt, suite.yt[begin:ds:end, 3], label="\$C_t\$", linecolor=4)
 
 plt_combined = plot(plt_result, plt_surplus_and_noises, legendfont=6, size=(800, 240), title=["(a) risk model" "(b) sample paths" ""], titlefont=10, bottom_margin=5mm, left_margin=5mm)
-````
-
-````@example 09-risk
-savefig(plt_combined, joinpath(@__DIR__() * "../../../../latex/img/", "riskmodel_combined.pdf")) # hide
-nothing # hide
 ````
 
 ---
