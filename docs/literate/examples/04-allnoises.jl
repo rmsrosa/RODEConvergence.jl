@@ -7,8 +7,8 @@
 # More precisely, we consider the RODE
 # ```math
 #   \begin{cases}
-#     \displaystyle \frac{\mathrm{d}{X}_t}{\mathrm{d} t} = - \|{Y}_t\|^2 {X}_t + {Y}_t, \qquad 0 \leq t \leq T, \\
-#   \left. {X}_t \right|_{t = 0} = {X}_0,
+#     \displaystyle \frac{\mathrm{d}X_t}{\mathrm{d} t} = - \|Y_t\|^2 X_t + Y_t, \qquad 0 \leq t \leq T, \\
+#   \left. X_t \right|_{t = 0} = X_0,
 #   \end{cases}
 # ```
 # where $\{Y_t\}_{t\geq 0}$ is either a scalar noise with one of the many implemented noises or a vector-valued noise with all the noises, each as an independent component of the vector process.
@@ -123,9 +123,9 @@ x0law = MvNormal(zeros(length(noise)), I)
 # We now add some information about the simulation, for the caption of the convergence figure.
 
 info = (
-    equation = "\$\\mathrm{d}{X}_t/\\mathrm{d}t = - \\| {Y}_t\\|^2 {X}_t + {Y}_t\$",
+    equation = "\$\\mathrm{d}X_t/\\mathrm{d}t = - \\| Y_t\\|^2 X_t + Y_t\$",
     noise = "vector-valued noise \$\\{Y_t\\}_t\$ with all the implemented noises",
-    ic = "\${X}_0 \\sim \\mathcal{N}({0}, \\mathrm{I})\$"
+    ic = "\$X_0 \\sim \\mathcal{N}({0}, \\mathrm{I})\$"
 )
 nothing # hide
 
@@ -178,7 +178,7 @@ plt_noises = plot(suite, xshow=false, yshow=true, linecolor=:auto, label=["W" "O
 
 # and combined, with their sum squared, as it enters the homogenous term,
 
-plot(suite, xshow=false, yshow= y -> sum(abs2, y), label="\$\\left\\|\\left\\|{Y}_t\\right\\|\\right\\|^2\$")
+plot(suite, xshow=false, yshow= y -> sum(abs2, y), label="\$\\left\\|\\left\\|Y_t\\right\\|\\right\\|^2\$")
 
 # We finally combine all the convergence plot and the noises into a single plot, for the article:
 
