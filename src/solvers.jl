@@ -34,7 +34,7 @@ CustomUnivariateMethod(solver::F, solver_params::P) where {F, P} = CustomMethod{
 CustomMultivariateMethod(solver::F, solver_params::P) where {F, P} = CustomMethod{F, P, Multivariate}(solver, solver_params)
 
 """
-    solve!(xt, t0, tf, x0, f, params, yt, method)
+    solve!(xt, t0, tf, x0, f, yt, params, method)
 
 Solve a random ODE with the provided `method`.
 
