@@ -176,7 +176,7 @@ for h in Iterators.drop(hursts, 1)
 end
 ````
 
-We print them out for inclusing in the paper:
+We print them out for clarity:
 
 ````@example 05-fBm_linear
 [collect(hursts) ps pmins pmaxs]

@@ -148,7 +148,7 @@ for h in Iterators.drop(hursts, 1)
     push!(pmaxs, loc_result.pmax)    
 end
 
-# We print them out for inclusing in the paper:
+# We print them out for clarity:
 
 [collect(hursts) ps pmins pmaxs]
 

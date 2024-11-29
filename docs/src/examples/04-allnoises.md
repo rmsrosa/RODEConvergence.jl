@@ -274,7 +274,7 @@ for eachnoise in noise.processes
 end
 ````
 
-We print them out for inclusing in the paper:
+We print them out for clarity:
 
 ````@example 04-allnoises
 noises_short = ["all"; "W"; "OU"; "gBm"; "hlp"; "cP"; "sP"; "H"; "T"; "fBm"]

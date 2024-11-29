@@ -223,7 +223,7 @@ for eachnoise in noise.processes
     push!(pmaxs, eachresult.pmax) 
 end
 
-# We print them out for inclusing in the paper:
+# We print them out for clarity:
 
 noises_short = ["all"; "W"; "OU"; "gBm"; "hlp"; "cP"; "sP"; "H"; "T"; "fBm"]
 
