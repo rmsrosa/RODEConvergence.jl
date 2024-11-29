@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Scalar equation with different noises · Euler method for RODEs</title><meta name="title" content="Scalar equation with different noises · Euler method for RODEs"/><meta property="og:title" content="Scalar equation with different noises · Euler method for RODEs"/><meta property="twitter:title" content="Scalar equation with different noises · Euler method for RODEs"/><meta name="description" content="Documentation for Euler method for RODEs."/><meta property="og:description" content="Documentation for Euler method for RODEs."/><meta property="twitter:description" content="Documentation for Euler method for RODEs."/><meta property="og:url" content="https://github.com/rmsrosa/RODEConvergence.jl/examples/11-eachnoise/"/><meta property="twitter:url" content="https://github.com/rmsrosa/RODEConvergence.jl/examples/11-eachnoise/"/><link rel="canonical" href="https://github.com/rmsrosa/RODEConvergence.jl/examples/11-eachnoise/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">Euler method for RODEs</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Overview</a></li><li><span class="tocitem">Examples</span><ul><li><input class="collapse-toggle" id="menuitem-2-1" type="checkbox"/><label class="tocitem" for="menuitem-2-1"><span class="docs-label">Basic Linear RODEs</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../01-wiener_linearhomogeneous/">Homogenous linear RODE with a Wiener process noise coefficient</a></li><li><a class="tocitem" href="../02-wiener_linearnonhomogeneous/">Non-homogenous linear RODE with a Wiener process noise coefficient</a></li><li><a class="tocitem" href="../03-sin_gBm_linearhomogeneous/">Homogenous linear RODE with the sine of a Geometric Brownian motion coefficient</a></li></ul></li><li><a class="tocitem" href="../04-allnoises/">Linear system with all implemented noises</a></li><li><a class="tocitem" href="../05-fBm_linear/">Linear RODE with fractional Brownian motion</a></li><li><a class="tocitem" href="../06-popdyn/">Population dynamics with harvest</a></li><li><a class="tocitem" href="../07-toggle_switch/">A toggle-switch model for gene expression</a></li><li><a class="tocitem" href="../08-earthquake/">Mechanical structural under random Earthquake-like seismic disturbances</a></li><li><a class="tocitem" href="../09-risk/">An actuarial risk model</a></li><li><a class="tocitem" href="../10-fisherkpp/">Random Fisher-KPP partial differential equation</a></li></ul></li><li><span class="tocitem">Noises</span><ul><li><a class="tocitem" href="../../noises/noiseintro/">Noises</a></li><li><a class="tocitem" href="../../noises/homlin/">Homogeneous linear Itô process noise</a></li><li><a class="tocitem" href="../../noises/fBm/">Simulating fractional Brownian motion</a></li></ul></li><li><a class="tocitem" href="../../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Scalar equation with different noises</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Scalar equation with different noises</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/rmsrosa/RODEConvergence.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/rmsrosa/RODEConvergence.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Scalar-equation-with-different-noises"><a class="docs-heading-anchor" href="#Scalar-equation-with-different-noises">Scalar equation with different noises</a><a id="Scalar-equation-with-different-noises-1"></a><a class="docs-heading-anchor-permalink" href="#Scalar-equation-with-different-noises" title="Permalink"></a></h1><p>This time we consider a family of scalar equations with different noises, similarly to what we have done earlier, but now with varying parameters, to see how that affects the convergence of the Heun method.</p><h2 id="The-equation"><a class="docs-heading-anchor" href="#The-equation">The equation</a><a id="The-equation-1"></a><a class="docs-heading-anchor-permalink" href="#The-equation" title="Permalink"></a></h2><p>More precisely, we consider the nonlinear RODE</p><p class="math-container">\[  \begin{cases}
+    \displaystyle \frac{\mathrm{d}X_t}{\mathrm{d} t} = - \|Y_t\|^2 (X_t - X_t^3) + sin(Y_t), \qquad 0 \leq t \leq T, \\
+  \left. X_t \right|_{t = 0} = X_0,
+  \end{cases}\]</p><p>where <span>$\{Y_t\}_{t\geq 0}$</span> is a scalar noise.</p><p>The <em>target</em> solution is construced by solving the system via Heun method at a much higher resolution.</p><h2 id="Numerical-approximation"><a class="docs-heading-anchor" href="#Numerical-approximation">Numerical approximation</a><a id="Numerical-approximation-1"></a><a class="docs-heading-anchor-permalink" href="#Numerical-approximation" title="Permalink"></a></h2><h3 id="Setting-up-the-problem"><a class="docs-heading-anchor" href="#Setting-up-the-problem">Setting up the problem</a><a id="Setting-up-the-problem-1"></a><a class="docs-heading-anchor-permalink" href="#Setting-up-the-problem" title="Permalink"></a></h3><p>First we load the necessary packages</p><pre><code class="language-julia hljs">using Plots
+using Measures
+using LinearAlgebra
+using Random
+using Distributions
+using RODEConvergence</code></pre><p>Then we set up some variables. First, the RNG:</p><pre><code class="language-julia hljs">rng = Xoshiro(123)</code></pre><p>The time interval is given by the end points</p><pre><code class="language-julia hljs">t0, tf = 0.0, 1.0</code></pre><p>and the mesh parameters are set to</p><pre><code class="language-julia hljs">ntgt = 2^18
+ns = 2 .^ (6:9)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">4-element Vector{Int64}:
+  64
+ 128
+ 256
+ 512</code></pre><p>and</p><pre><code class="language-julia hljs">nsample = ns[[1, 2, 3]]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">3-element Vector{Int64}:
+  64
+ 128
+ 256</code></pre><p>Now we define all the noise parameters, along with the number of Monte-Carlo simulations used for each noise</p><pre><code class="language-julia hljs">y0 = 0.2
+
+ν = 0.3
+σ = 0.5
+
+μ = 0.3
+
+μ1 = 0.5
+μ2 = 0.3
+ω = 3π
+primitive_of_a(t; μ1 = 0.5, μ2 = 0.3, ω = 3π) = μ1 * t - μ2 * cos(ω * t) / ω
+primitive_of_b2(t; σ = 0.5, ω = 3π) = σ^2 * ( t/2 - sin(ω * t) * cos(ω * t) / 2ω )
+
+λ = 2.0
+dylaw = Exponential(0.5)
+
+steplaw = Uniform(0.0, 1.0)
+
+λ₀ = 1.0
+a = 0.5
+δ = 2.0
+
+nr = 6
+transportcbrt(t, r) = mapreduce(ri -&gt; cbrt(sin(ri * t)), +, r) / length(r)
+transportabs(t, r) = mapreduce(ri -&gt; abs(sin(ri * t)), +, r) / length(r)
+transport23(t, r) = mapreduce(ri -&gt; sign(sin(ri * t)) * cbrt(sin(ri * t)) ^ 2, +, r) / length(r)
+transportsqrt(t, r) = mapreduce(ri -&gt; sign(sin(ri * t)) * sqrt(abs(sin(ri * t))), +, r) / length(r)
+transport(t, r) = mapreduce(ri -&gt; sin(ri * t), +, r) / length(r)
+ylaw = Gamma(7.5, 2.0)</code></pre><p>The list of noises, with the abbreviation, qualification, the noise itself, and the number of Monte-Carlo simulations</p><pre><code class="language-julia hljs">noises = [
+    (&quot;W&quot;, &quot;Wiener process&quot;, WienerProcess(t0, tf, 0.0), 80)
+    (&quot;cP&quot;, &quot;Compound Poisson λ = $λ, dylaw = $dylaw&quot;, CompoundPoissonProcess(t0, tf, λ, dylaw), 200)
+    (&quot;sP&quot;, &quot;Poisson Step&quot;, PoissonStepProcess(t0, tf, λ, steplaw), 120)
+    (&quot;H-Exp&quot;, &quot;Hawkes Exponential&quot;, ExponentialHawkesProcess(t0, tf, λ₀, a, δ, Exponential(0.5)), 400)
+    (&quot;H-Beta&quot;, &quot;Hawkes Beta&quot;, ExponentialHawkesProcess(t0, tf, 2λ₀, a/2, 3δ, Beta(2, 3)), 400)
+    (&quot;H-Gamma&quot;, &quot;Hawkes Gamma&quot;, ExponentialHawkesProcess(t0, tf, 2λ₀, a/2, δ/3, Gamma(1, 0.5)), 400)
+    (&quot;T&quot;, &quot;Transport&quot;, TransportProcess(t0, tf, ylaw, transport, nr), 60)
+    (&quot;T-abs&quot;, &quot;Transport abs&quot;, TransportProcess(t0, tf, ylaw, transportabs, nr), 60)
+    (&quot;T-2/3&quot;, &quot;Transport two-thirds&quot;, TransportProcess(t0, tf, ylaw, transport23, nr), 40)
+    (&quot;T-sqrt&quot;, &quot;Transport sqrt&quot;, TransportProcess(t0, tf, ylaw, transportsqrt, nr), 40)
+    (&quot;T-cbrt&quot;, &quot;Transport cbrt&quot;, TransportProcess(t0, tf, ylaw, transportcbrt, nr), 40)
+    (&quot;fBm 0.6&quot;, &quot;Fractional Brownian motion H = 0.6&quot;, FractionalBrownianMotionProcess(t0, tf, y0, 0.6, ntgt), 80)
+    (&quot;fBm 0.75&quot;, &quot;Fractional Brownian motion H = 0.75&quot;, FractionalBrownianMotionProcess(t0, tf, y0, 0.75, ntgt), 100)
+    (&quot;fBm 0.9&quot;, &quot;Fractional Brownian motion H=0.9&quot;, FractionalBrownianMotionProcess(t0, tf, y0, 0.9, ntgt), 100)
+]</code></pre><h3 id="Scalar-equations-with-the-individual-noises"><a class="docs-heading-anchor" href="#Scalar-equations-with-the-individual-noises">Scalar equations with the individual noises</a><a id="Scalar-equations-with-the-individual-noises-1"></a><a class="docs-heading-anchor-permalink" href="#Scalar-equations-with-the-individual-noises" title="Permalink"></a></h3><p>Now we simulate a series of Random ODEs, each with one of the noises above, instead of the system with all combined noises.</p><p>In the univariate case, the right hand side of the equation becomes</p><pre><code class="language-julia hljs">f(t, x, y, p) = y^2 * (x - x^3) + sin(y)
+
+params = nothing</code></pre><p>The initial condition is also univariate</p><pre><code class="language-julia hljs">eachx0law = Normal()</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Distributions.Normal{Float64}(μ=0.0, σ=1.0)</code></pre><p>and so is the Euler method</p><pre><code class="language-julia hljs">targetHeun = RandomHeun()
+methodEuler = RandomEuler()
+methodHeun = RandomHeun()</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">RandomHeun{Float64, Distributions.Univariate}(Float64[], Float64[], Float64[])</code></pre><p>Now we compute the error for each noise and gather the order of convergence in a vector.</p><pre><code class="language-julia hljs">psHeun = Float64[]
+pminsHeun = Float64[]
+pmaxsHeun = Float64[]
+
+for noisej in noises
+    suiteHeun = ConvergenceSuite(t0, tf, eachx0law, f, noisej[3], params, targetHeun, methodHeun, ntgt, ns, noisej[4])
+
+    @time resultHeun = solve(rng, suiteHeun)
+
+    @info &quot;noise = $(noisej[2]) =&gt; p = $(resultHeun.p) ($(resultHeun.pmin), $(resultHeun.pmax))&quot;
+
+    push!(psHeun, resultHeun.p)
+    push!(pminsHeun, resultHeun.pmin)
+    push!(pmaxsHeun, resultHeun.pmax)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">  0.932943 seconds (300.81 k allocations: 14.369 MiB, 52.55% compilation time)
+[ Info: noise = Wiener process =&gt; p = 1.0321187891881085 (0.9243492293935888, 1.1394285545319973)
+  1.596017 seconds (259.87 k allocations: 12.282 MiB, 28.21% compilation time)
+[ Info: noise = Compound Poisson λ = 2.0, dylaw = Distributions.Exponential{Float64}(θ=0.5) =&gt; p = 0.9272140791666716 (0.5643636190324172, 1.3895364371860723)
+  1.289895 seconds (259.86 k allocations: 12.282 MiB, 34.58% compilation time)
+[ Info: noise = Poisson Step =&gt; p = 1.007292353537287 (0.8592579964992385, 1.1620605126814365)
+  3.287858 seconds (259.87 k allocations: 12.285 MiB, 13.72% compilation time)
+[ Info: noise = Hawkes Exponential =&gt; p = 0.7798034450152225 (0.2869585914164177, 1.4246278948028896)
+  3.276805 seconds (295.29 k allocations: 13.959 MiB, 14.41% compilation time)
+[ Info: noise = Hawkes Beta =&gt; p = 1.2539610407735111 (1.0929473011571715, 1.4050647886674512)
+  3.311178 seconds (295.28 k allocations: 13.960 MiB, 14.33% compilation time)
+[ Info: noise = Hawkes Gamma =&gt; p = 1.066897937971205 (0.7896812731573517, 1.3034749552499498)
+  1.563737 seconds (305.02 k allocations: 14.574 MiB, 30.42% compilation time)
+[ Info: noise = Transport =&gt; p = 1.9960289397776896 (1.9413784391678908, 2.0534959531422032)
+  1.603837 seconds (305.44 k allocations: 14.584 MiB, 30.36% compilation time)
+[ Info: noise = Transport abs =&gt; p = 2.0313820834593503 (1.9521728437212502, 2.1094203247999355)
+  2.818087 seconds (308.49 k allocations: 14.724 MiB, 17.06% compilation time)
+[ Info: noise = Transport two-thirds =&gt; p = 1.7006724663035315 (1.6123425374347558, 1.7904740111810729)
+  1.920928 seconds (310.31 k allocations: 14.830 MiB, 25.26% compilation time)
+[ Info: noise = Transport sqrt =&gt; p = 1.5225164082625917 (1.4416895753116856, 1.5975267800308417)
+  2.136300 seconds (305.18 k allocations: 14.580 MiB, 22.17% compilation time)
+[ Info: noise = Transport cbrt =&gt; p = 1.2869614767158906 (1.1884731337644359, 1.3980122376172215)
+  3.695222 seconds (259.85 k allocations: 12.283 MiB, 12.04% compilation time)
+[ Info: noise = Fractional Brownian motion H = 0.6 =&gt; p = 1.1564912494413624 (1.0278992615898608, 1.2817884698456163)
+  4.094658 seconds (178 allocations: 148.125 KiB)
+[ Info: noise = Fractional Brownian motion H = 0.75 =&gt; p = 1.2408904967378895 (1.134658611529341, 1.3506363902014011)
+  4.101967 seconds (178 allocations: 148.125 KiB)
+[ Info: noise = Fractional Brownian motion H=0.9 =&gt; p = 1.467455679209074 (1.3598361905872354, 1.5712581412358793)</code></pre><p>We print them out for clarity:</p><pre><code class="language-julia hljs">for (noisej, pj, pminj, pmaxj) in zip(noises, psHeun, pminsHeun, pmaxsHeun)
+    println(&quot;$(noisej[1]) ($(noisej[2]) &amp; $(round(pj, sigdigits=6)) &amp; $(round(pminj, sigdigits=6)) &amp; $(round(pmaxj, sigdigits=6)) \\\\&quot;)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">W (Wiener process &amp; 1.03212 &amp; 0.924349 &amp; 1.13943 \\
+cP (Compound Poisson λ = 2.0, dylaw = Distributions.Exponential{Float64}(θ=0.5) &amp; 0.927214 &amp; 0.564364 &amp; 1.38954 \\
+sP (Poisson Step &amp; 1.00729 &amp; 0.859258 &amp; 1.16206 \\
+H-Exp (Hawkes Exponential &amp; 0.779803 &amp; 0.286959 &amp; 1.42463 \\
+H-Beta (Hawkes Beta &amp; 1.25396 &amp; 1.09295 &amp; 1.40506 \\
+H-Gamma (Hawkes Gamma &amp; 1.0669 &amp; 0.789681 &amp; 1.30347 \\
+T (Transport &amp; 1.99603 &amp; 1.94138 &amp; 2.0535 \\
+T-abs (Transport abs &amp; 2.03138 &amp; 1.95217 &amp; 2.10942 \\
+T-2/3 (Transport two-thirds &amp; 1.70067 &amp; 1.61234 &amp; 1.79047 \\
+T-sqrt (Transport sqrt &amp; 1.52252 &amp; 1.44169 &amp; 1.59753 \\
+T-cbrt (Transport cbrt &amp; 1.28696 &amp; 1.18847 &amp; 1.39801 \\
+fBm 0.6 (Fractional Brownian motion H = 0.6 &amp; 1.15649 &amp; 1.0279 &amp; 1.28179 \\
+fBm 0.75 (Fractional Brownian motion H = 0.75 &amp; 1.24089 &amp; 1.13466 &amp; 1.35064 \\
+fBm 0.9 (Fractional Brownian motion H=0.9 &amp; 1.46746 &amp; 1.35984 &amp; 1.57126 \\</code></pre><p>The following plot helps in visualizing the result.</p><pre><code class="language-julia hljs">plt_Heun = plot(title=&quot;Order of convergence for the Heun method with various&quot;, titlefont=10, ylims=(-0.1, 2.2), ylabel=&quot;\$p\$&quot;, guidefont=10, legend=:bottomright)
+scatter!(plt_Heun, getindex.(noises, 1), psHeun, yerror=(psHeun .- pminsHeun, pmaxsHeun .- psHeun), xrotation = 30, label=&quot;Heun&quot;)
+hline!(plt_Heun, [1.0], linestyle=:dash, label=&quot;p=1&quot;,bottom_margin=5mm, left_margin=5mm)
+
+display(plt_Heun)</code></pre><pre><code class="language-julia hljs">nothing</code></pre><p>Now we do the Euler</p><pre><code class="language-julia hljs">psEuler = Float64[]
+pminsEuler = Float64[]
+pmaxsEuler = Float64[]
+
+for noisej in noises
+    suiteEuler = ConvergenceSuite(t0, tf, eachx0law, f, noisej[3], params, targetHeun, methodEuler, ntgt, ns, noisej[4])
+
+    @time resultEuler = solve(rng, suiteEuler)
+
+    @info &quot;noise = $(noisej[2]) =&gt; p = $(resultEuler.p) ($(resultEuler.pmin), $(resultEuler.pmax))&quot;
+
+    push!(psEuler, resultEuler.p)
+    push!(pminsEuler, resultEuler.pmin)
+    push!(pmaxsEuler, resultEuler.pmax)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">  0.909648 seconds (280.34 k allocations: 13.322 MiB, 51.36% compilation time)
+[ Info: noise = Wiener process =&gt; p = 1.0479733672345548 (0.8763236160098349, 1.2051291200043583)
+  1.585573 seconds (259.91 k allocations: 12.285 MiB, 28.08% compilation time)
+[ Info: noise = Compound Poisson λ = 2.0, dylaw = Distributions.Exponential{Float64}(θ=0.5) =&gt; p = 0.9564410312280587 (0.819028596227247, 1.0954418211885608)
+  1.296357 seconds (259.89 k allocations: 12.283 MiB, 34.37% compilation time)
+[ Info: noise = Poisson Step =&gt; p = 1.0031161725174125 (0.7779825697424608, 1.2189787743463931)
+  3.279480 seconds (259.91 k allocations: 12.284 MiB, 13.66% compilation time)
+[ Info: noise = Hawkes Exponential =&gt; p = 0.9812084814644824 (0.8419769861404869, 1.1217276602137407)
+  3.243259 seconds (259.91 k allocations: 12.284 MiB, 13.72% compilation time)
+[ Info: noise = Hawkes Beta =&gt; p = 1.142123113567185 (0.9818162126558064, 1.2943677922169612)
+  3.273782 seconds (259.91 k allocations: 12.289 MiB, 13.70% compilation time)
+[ Info: noise = Hawkes Gamma =&gt; p = 1.116944363111351 (0.9595737153877606, 1.2796102260758526)
+  1.544653 seconds (259.92 k allocations: 12.287 MiB, 29.27% compilation time)
+[ Info: noise = Transport =&gt; p = 1.0140581665392308 (0.9327405764629683, 1.09727595047204)
+  1.602135 seconds (259.93 k allocations: 12.289 MiB, 27.93% compilation time)
+[ Info: noise = Transport abs =&gt; p = 1.0166211463980777 (0.8573533143319292, 1.1759027168202252)
+  2.764661 seconds (259.92 k allocations: 12.284 MiB, 16.14% compilation time)
+[ Info: noise = Transport two-thirds =&gt; p = 1.0412884278433787 (0.9605813910848534, 1.1211793417415183)
+  1.857107 seconds (259.92 k allocations: 12.286 MiB, 24.59% compilation time)
+[ Info: noise = Transport sqrt =&gt; p = 1.0566999753969504 (0.9711783638363025, 1.1445082117225984)
+  2.103846 seconds (259.93 k allocations: 12.288 MiB, 21.46% compilation time)
+[ Info: noise = Transport cbrt =&gt; p = 1.0786093909918117 (0.9472453489119564, 1.211038283745908)
+  3.667536 seconds (259.90 k allocations: 12.292 MiB, 0.55% gc time, 12.98% compilation time)
+[ Info: noise = Fractional Brownian motion H = 0.6 =&gt; p = 1.0145744630868443 (0.8987810651052227, 1.1395127338201583)
+  4.025818 seconds (178 allocations: 148.125 KiB)
+[ Info: noise = Fractional Brownian motion H = 0.75 =&gt; p = 0.9992497761292214 (0.8793386271112408, 1.1263005308673928)
+  4.017563 seconds (178 allocations: 148.125 KiB)
+[ Info: noise = Fractional Brownian motion H=0.9 =&gt; p = 1.0027047669525777 (0.8843208071770456, 1.1218824815272497)</code></pre><p>We print them out for clarity:</p><pre><code class="language-julia hljs">for (noisej, pj, pminj, pmaxj) in zip(noises, psEuler, pminsEuler, pmaxsEuler)
+    println(&quot;$(noisej[1]) ($(noisej[2]) &amp; $(round(pj, sigdigits=6)) &amp; $(round(pminj, sigdigits=6)) &amp; $(round(pmaxj, sigdigits=6)) \\\\&quot;)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">W (Wiener process &amp; 1.04797 &amp; 0.876324 &amp; 1.20513 \\
+cP (Compound Poisson λ = 2.0, dylaw = Distributions.Exponential{Float64}(θ=0.5) &amp; 0.956441 &amp; 0.819029 &amp; 1.09544 \\
+sP (Poisson Step &amp; 1.00312 &amp; 0.777983 &amp; 1.21898 \\
+H-Exp (Hawkes Exponential &amp; 0.981208 &amp; 0.841977 &amp; 1.12173 \\
+H-Beta (Hawkes Beta &amp; 1.14212 &amp; 0.981816 &amp; 1.29437 \\
+H-Gamma (Hawkes Gamma &amp; 1.11694 &amp; 0.959574 &amp; 1.27961 \\
+T (Transport &amp; 1.01406 &amp; 0.932741 &amp; 1.09728 \\
+T-abs (Transport abs &amp; 1.01662 &amp; 0.857353 &amp; 1.1759 \\
+T-2/3 (Transport two-thirds &amp; 1.04129 &amp; 0.960581 &amp; 1.12118 \\
+T-sqrt (Transport sqrt &amp; 1.0567 &amp; 0.971178 &amp; 1.14451 \\
+T-cbrt (Transport cbrt &amp; 1.07861 &amp; 0.947245 &amp; 1.21104 \\
+fBm 0.6 (Fractional Brownian motion H = 0.6 &amp; 1.01457 &amp; 0.898781 &amp; 1.13951 \\
+fBm 0.75 (Fractional Brownian motion H = 0.75 &amp; 0.99925 &amp; 0.879339 &amp; 1.1263 \\
+fBm 0.9 (Fractional Brownian motion H=0.9 &amp; 1.0027 &amp; 0.884321 &amp; 1.12188 \\</code></pre><p>and add to the plot</p><pre><code class="language-julia hljs">plt_Euler = plot(title=&quot;Order of convergence for the Euler method with various&quot;, titlefont=10, ylims=(-0.1, 2.2), ylabel=&quot;\$p\$&quot;, guidefont=10, legend=:bottomright)
+scatter!(plt_Euler, getindex.(noises, 1), psEuler, yerror=(psEuler .- pminsEuler, pmaxsEuler .- psEuler), xrotation = 30, label=&quot;Euler&quot;)
+hline!(plt_Euler, [1.0], linestyle=:dash, label=&quot;p=1&quot;,bottom_margin=5mm, left_margin=5mm)
+
+display(plt_Euler)</code></pre><p>Strong order <span>$p$</span> of convergence of the Euler method for <span>$\mathrm{d}X_t/\mathrm{d}t = - Y_t^2 X_t + Y_t$</span> for a series of different noise <span>$\{Y_t\}_t$</span> (scattered dots: computed values; dashed line: expected <span>$p = 1;$</span> with 95% confidence interval).</p><pre><code class="language-julia hljs">nothing</code></pre><h1 id="IVP"><a class="docs-heading-anchor" href="#IVP">IVP</a><a id="IVP-1"></a><a class="docs-heading-anchor-permalink" href="#IVP" title="Permalink"></a></h1><p>Playing with some noises</p><pre><code class="language-julia hljs">x0 = 0.5
+
+tt = range(t0, tf, length=last(ns)+1)
+xt = zeros(last(ns) + 1)
+yt = zeros(last(ns) + 1)
+
+noises_for_samples = [
+    noises[begin:end-3]
+    (&quot;fBm 0.6&quot;, &quot;Fractional Brownian motion H = 0.6&quot;, FractionalBrownianMotionProcess(t0, tf, y0, 0.6, last(ns)))
+    (&quot;fBm 0.8&quot;, &quot;Fractional Brownian motion H = 0.8&quot;, FractionalBrownianMotionProcess(t0, tf, y0, 0.75, last(ns)))
+    ]
+
+for noisej in noises_for_samples
+    plt_noise = plot(title=&quot;Sample noises of $(noisej[2])&quot;, titlefont=10, legend=false)
+    plt_heun = plot(title=&quot;Sample solutions with $(noisej[2])&quot;, titlefont=10, legend=false)
+    println(&quot;noisej = $(noisej[1])&quot;)
+    for i in 1:10
+        rand!(rng, noisej[3], yt)
+        plot!(plt_noise, tt, yt)
+        solve!(xt, t0, tf, x0, f, yt, params, RandomHeun())
+        plot!(plt_heun, tt, xt)
+    end
+    display(plt_noise)
+    display(plt_heun)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">noisej = W
+noisej = cP
+noisej = sP
+noisej = H-Exp
+noisej = H-Beta
+noisej = H-Gamma
+noisej = T
+noisej = T-abs
+noisej = T-2/3
+noisej = T-sqrt
+noisej = T-cbrt
+noisej = fBm 0.6
+noisej = fBm 0.8</code></pre><pre><code class="language-julia hljs">nothing</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Friday 29 November 2024 00:48">Friday 29 November 2024</span>. Using Julia version 1.11.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
